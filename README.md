@@ -6,4 +6,4 @@ This repository was created as a team with following members:
 - [Traijan](https://github.com/traijan1)
 
 ## Theme
-
+**Every 10 Seconds**
