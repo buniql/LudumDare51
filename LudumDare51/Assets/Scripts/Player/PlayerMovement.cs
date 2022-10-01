@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         activeMovementSpeed = MovementSpeed;
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         //player rotation
         if (Input.GetAxis("Horizontal") < 0) transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -33,7 +33,10 @@ public class PlayerMovement : MonoBehaviour
         Vector2 dir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (dir.sqrMagnitude > 1f) dir.Normalize();
         _rigidbody2D.MovePosition(_rigidbody2D.position + dir * activeMovementSpeed);
+    }
 
+    void Update()
+    {
         //dash handling
         if (Input.GetKeyDown(KeyCode.Space))
         {
