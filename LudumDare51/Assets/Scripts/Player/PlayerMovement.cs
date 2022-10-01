@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float _activeMovementSpeed;
     private float _dashCounter = 0;
     private float _dashCoolCounter = 0;
+    private bool _isDashing = false;
 
     private void Start()
     {
@@ -35,8 +36,14 @@ public class PlayerMovement : MonoBehaviour
             if (_dashCoolCounter <= 0 && _dashCounter <= 0)
             {
                 _activeMovementSpeed = _holder.Stat.dashSpeed;
+                _isDashing = true;
                 _dashCounter = _holder.Stat.dashLength;
             }
+        }
+
+        if (!_isDashing)
+        {
+            _activeMovementSpeed = _holder.Stat.speed;
         }
 
         if (_dashCounter > 0)
@@ -45,8 +52,8 @@ public class PlayerMovement : MonoBehaviour
 
             if (_dashCounter <= 0)
             {
-                _activeMovementSpeed = _holder.Stat.speed;
                 _dashCoolCounter = _holder.Stat.dashCooldown;
+                _isDashing = false;
             }
         }
 
