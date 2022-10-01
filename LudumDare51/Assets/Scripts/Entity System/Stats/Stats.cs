@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
-using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "Stats Object", menuName = "Objects/Stats")]
 public class Stats : ScriptableObject
