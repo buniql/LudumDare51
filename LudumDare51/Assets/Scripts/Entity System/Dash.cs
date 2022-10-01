@@ -9,7 +9,7 @@ public class Dash : MonoBehaviour
     private float _dashCounter = 0;
     private float _dashCoolCounter = 0;
 
-    public bool IsDashing { get; set; }
+    public bool IsDashing { get; private set; }
 
     void Start()
     {
