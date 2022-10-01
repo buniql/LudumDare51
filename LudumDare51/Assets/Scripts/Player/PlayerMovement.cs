@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
         _holder = GetComponent<StatHolder>();
         _dash = GetComponent<Dash>();
 
-        _activeMovementSpeed = _holder.Stat.speed;
+        _activeMovementSpeed = _holder.Stat.Speed;
     }
 
     private void FixedUpdate()
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (!_dash.IsDashing)
         {
-            _activeMovementSpeed = _holder.Stat.speed;
+            _activeMovementSpeed = _holder.Stat.Speed;
         }
     }
 }

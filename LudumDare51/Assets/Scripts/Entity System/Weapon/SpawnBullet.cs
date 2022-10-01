@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class SpawnBullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    StatHolder _holder;
+
+    void Awake()
     {
-        
+        _holder = GetComponent<StatHolder>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+
+        }
     }
 }
