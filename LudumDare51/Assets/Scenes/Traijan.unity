@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 831660684}
   - component: {fileID: 831660683}
   - component: {fileID: 831660685}
+  - component: {fileID: 831660686}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -444,10 +445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0591c4207551d7449ba343b332d5cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 0.2
-  DashSpeed: 0.7
-  DashLength: 0.2
-  dashCooldown: 1
 --- !u!4 &831660684
 Transform:
   m_ObjectHideFlags: 0
@@ -485,6 +482,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &831660686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831660682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6557f56fcbc8044b9e5fa83338dec5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stat: {fileID: 11400000, guid: 0d990b565dc0df74d85f838bece9f445, type: 2}
+  testSecondStat: {fileID: 11400000, guid: 08c9df0235450b145aa26c71c2862589, type: 2}
 --- !u!1 &980593782
 GameObject:
   m_ObjectHideFlags: 0
