@@ -5,16 +5,15 @@ public class PlayerMovement : MonoBehaviour
 {
     private StatHolder _holder;
     private Rigidbody2D _rigidbody2D;
+    private Dash _dash;
 
     private float _activeMovementSpeed;
-    private float _dashCounter = 0;
-    private float _dashCoolCounter = 0;
-    private bool _isDashing = false;
 
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _holder = GetComponent<StatHolder>();
+        _dash = GetComponent<Dash>();
 
         _activeMovementSpeed = _holder.Stat.speed;
     }
@@ -37,33 +36,12 @@ public class PlayerMovement : MonoBehaviour
         //dash handling
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (_dashCoolCounter <= 0 && _dashCounter <= 0)
-            {
-                _activeMovementSpeed = _holder.Stat.dashSpeed;
-                _isDashing = true;
-                _dashCounter = _holder.Stat.dashLength;
-            }
+            _activeMovementSpeed = _dash.GetDashSpeed();
         }
 
-        if (!_isDashing)
+        if (!_dash.IsDashing)
         {
             _activeMovementSpeed = _holder.Stat.speed;
-        }
-
-        if (_dashCounter > 0)
-        {
-            _dashCounter -= Time.deltaTime;
-
-            if (_dashCounter <= 0)
-            {
-                _dashCoolCounter = _holder.Stat.dashCooldown;
-                _isDashing = false;
-            }
-        }
-
-        if (_dashCoolCounter > 0)
-        {
-            _dashCoolCounter -= Time.deltaTime;
         }
     }
 }
