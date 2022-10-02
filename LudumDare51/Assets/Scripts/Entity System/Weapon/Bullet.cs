@@ -12,7 +12,6 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - GameObject.Find("Player").transform.position;
     }
 
     void FixedUpdate()
