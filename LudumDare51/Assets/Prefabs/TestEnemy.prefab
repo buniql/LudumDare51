@@ -96,6 +96,8 @@ GameObject:
   - component: {fileID: 7227538100817365077}
   - component: {fileID: -6725758323587023163}
   - component: {fileID: -8919608225214862977}
+  - component: {fileID: 3488775869017401993}
+  - component: {fileID: -3892318687441692200}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -160,3 +162,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56aa19277315df4daf56d28129739f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3488775869017401993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622893531276828412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4572f2e69f62264ea1df57aab18e3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0.2
+  activationDistance: 50
+--- !u!50 &-3892318687441692200
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622893531276828412}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
