@@ -71,7 +71,7 @@ public class Enemy9 : MonoBehaviour
             for(int i = 0; i < gunRounds; i++)
             {
                 var bullet = weapon.GetComponent<Bullet>();
-                bullet.ConfigureBullet(((spawner.transform.position - transform.position) + new Vector3(Random.Range(-gunSpray, gunSpray), Random.Range(-gunSpray, gunSpray), 0)), tag);
+                bullet.ConfigureBullet(((spawner.transform.position - transform.position) + new Vector3(Random.Range(-gunSpray, gunSpray), Random.Range(-gunSpray, gunSpray), 0)), tag, SpawnBullet.ProjectileType.Default);
 
                 Instantiate(weapon, spawner.transform.position, Quaternion.identity);
             }

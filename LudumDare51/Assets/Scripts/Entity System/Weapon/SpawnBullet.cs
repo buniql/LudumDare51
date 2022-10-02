@@ -5,13 +5,27 @@ using UnityEngine;
 public class SpawnBullet : MonoBehaviour
 {
     StatHolder _holder;
+    public static ProjectileType projectileType;
+    public ProjectileType type;
     private float _cooldownCounter;
 
     Camera _mainCamera;
     Transform _playerTransform;
 
+    public enum ProjectileType
+    {
+        Default, //default spell
+        Fire, //explosive fireball
+        Bounce, //bounces off enemys
+        AutoAim, //targets closes enemy
+        Big, //giant projectile
+        Blob //stays at mouseposition
+
+    }
+
     void Awake()
     {
+        projectileType = type;
         _playerTransform = GameObject.Find("Player").GetComponent<Transform>();
         _holder = GetComponentInParent<StatHolder>();
         _cooldownCounter = _holder.Stat.ShootCooldown;
@@ -36,8 +50,8 @@ public class SpawnBullet : MonoBehaviour
             var damage = weapon.GetComponent<Damage>();
             damage.SetDamage(_holder.Stat.Damage, _playerTransform.gameObject.tag);
 
-            var bullet = weapon.GetComponent<Bullet>();
-            bullet.ConfigureBullet(direction - transform.position, _playerTransform.gameObject.tag);
+            var bullet = weapon.GetComponent<Bullet>(); //change spawn amount?
+            bullet.ConfigureBullet(direction - transform.position, _playerTransform.gameObject.tag, projectileType);
 
             GameObject.Instantiate(weapon, gameObject.transform.position, Quaternion.identity);
         }

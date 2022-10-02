@@ -69,7 +69,7 @@ public class Enemy1 : MonoBehaviour
             for(int i = 0; i < spawner.Length; i++)
             {
                 var bullet = weapon.GetComponent<Bullet>();
-                bullet.ConfigureBullet((spawner[i].transform.position - transform.position), tag);
+                bullet.ConfigureBullet((spawner[i].transform.position - transform.position), tag, SpawnBullet.ProjectileType.Default);
 
                 Instantiate(weapon, spawner[i].transform.position, Quaternion.identity);
             }
