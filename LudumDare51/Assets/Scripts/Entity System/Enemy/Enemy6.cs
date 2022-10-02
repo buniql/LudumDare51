@@ -2,21 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy2 : MonoBehaviour
+public class Enemy6 : MonoBehaviour
 {
-    public float rotationSpeed;
     public float activationDistance;
-    public GameObject[] spawner;
 
     private Transform _player;
 
     private bool _activated;
 
+    private float _activeMovementspeed;
+
     private StatHolder _holder;
     private Rigidbody2D _rigidbody2D;
     private Dash _dash;
+    private Damage _damage;
 
-    private float _cooldownCounter = -1;
+    private float _attackCooldownCounter = -1;
+    private float _dodgeCooldownCounter = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,7 @@ public class Enemy2 : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _holder = GetComponent<StatHolder>();
         _dash = GetComponent<Dash>();
+        _damage = GetComponent<Damage>();
         _activated = false;
     }
 
@@ -32,8 +35,8 @@ public class Enemy2 : MonoBehaviour
     {
         Vector3 direction = _player.transform.position - transform.position;
         if (direction.sqrMagnitude > 1f) direction.Normalize();
-
-        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        float rotation_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
 
         if ((_player.transform.position - transform.position).sqrMagnitude > activationDistance && !_activated)
             Idle();
@@ -42,12 +45,11 @@ public class Enemy2 : MonoBehaviour
 
         if (_activated)
         {
-            _rigidbody2D.MovePosition(transform.position + direction * _holder.Stat.Speed);
+            _rigidbody2D.MovePosition(transform.position + direction * _activeMovementspeed);
 
             Attack();
         }
     }
-
 
     void Idle()
     {
@@ -56,24 +58,22 @@ public class Enemy2 : MonoBehaviour
 
     void Attack()
     {
-        if (_cooldownCounter < 0)
+        if (_attackCooldownCounter < 0)
         {
-            Debug.Log("Cooldown: " + _holder.Stat.ShootCooldown);
-            _cooldownCounter = _holder.Stat.ShootCooldown;
-            var weapon = _holder.Stat.Weapon;
-
-            var damage = weapon.GetComponent<Damage>();
-            damage.SetDamage(_holder.Stat.Damage, tag);
-
-            for(int i = 0; i < spawner.Length; i++)
-            {
-                var bullet = weapon.GetComponent<Bullet>();
-                bullet.ConfigureBullet((spawner[i].transform.position - transform.position), tag);
-
-                Instantiate(weapon, spawner[i].transform.position, Quaternion.identity);
-            }
+            _damage.SetDamage(_holder.Stat.Damage, tag);
+            _attackCooldownCounter = _holder.Stat.ShootCooldown;
         }
-        _cooldownCounter -= Time.deltaTime;
+        if(_dodgeCooldownCounter < 0)
+        {
+            _activeMovementspeed = _holder.Stat.DashSpeed;
+            _dodgeCooldownCounter = _holder.Stat.DashCooldown;
+        }
+        if(_dodgeCooldownCounter < _holder.Stat.DashCooldown - _holder.Stat.DashLength)
+        {
+            _activeMovementspeed = _holder.Stat.Speed;
+        }
+        _attackCooldownCounter -= Time.deltaTime;
+        _dodgeCooldownCounter -= Time.deltaTime;
     }
 
     void Pause()

@@ -180,10 +180,10 @@ GameObject:
   - component: {fileID: 7227538100817365077}
   - component: {fileID: -6725758323587023163}
   - component: {fileID: -8919608225214862977}
-  - component: {fileID: 3488775869017401993}
+  - component: {fileID: 5619041106291111412}
   - component: {fileID: -3892318687441692200}
   m_Layer: 0
-  m_Name: Enemy1
+  m_Name: Enemy9
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6557f56fcbc8044b9e5fa83338dec5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stat: {fileID: 11400000, guid: d846511b21105884e8910493842ff1a1, type: 2}
+  _stat: {fileID: 11400000, guid: c5421a958169f8c4286bc50a9307c160, type: 2}
 --- !u!114 &-8919608225214862977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56aa19277315df4daf56d28129739f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3488775869017401993
+--- !u!114 &5619041106291111412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,14 +256,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2622893531276828412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4572f2e69f62264ea1df57aab18e3f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d38db2e3eee52945b3619f89167a6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.2
-  turnSpeed: 1
+  gunRounds: 9
+  gunSpray: 1
   activationDistance: 50
-  spawner:
-  - {fileID: 4651004333132422537}
+  spawner: {fileID: 4651004333132422537}
 --- !u!50 &-3892318687441692200
 Rigidbody2D:
   serializedVersion: 4

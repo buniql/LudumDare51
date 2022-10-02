@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy2 : MonoBehaviour
+public class Enemy9 : MonoBehaviour
 {
-    public float rotationSpeed;
+    public int gunRounds;
+    public float gunSpray;
     public float activationDistance;
-    public GameObject[] spawner;
+    public GameObject spawner;
 
     private Transform _player;
 
@@ -32,8 +33,8 @@ public class Enemy2 : MonoBehaviour
     {
         Vector3 direction = _player.transform.position - transform.position;
         if (direction.sqrMagnitude > 1f) direction.Normalize();
-
-        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        float rotation_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
 
         if ((_player.transform.position - transform.position).sqrMagnitude > activationDistance && !_activated)
             Idle();
@@ -58,6 +59,8 @@ public class Enemy2 : MonoBehaviour
     {
         if (_cooldownCounter < 0)
         {
+            Vector2[] shots = new Vector2[gunRounds];
+
             Debug.Log("Cooldown: " + _holder.Stat.ShootCooldown);
             _cooldownCounter = _holder.Stat.ShootCooldown;
             var weapon = _holder.Stat.Weapon;
@@ -65,12 +68,12 @@ public class Enemy2 : MonoBehaviour
             var damage = weapon.GetComponent<Damage>();
             damage.SetDamage(_holder.Stat.Damage, tag);
 
-            for(int i = 0; i < spawner.Length; i++)
+            for(int i = 0; i < gunRounds; i++)
             {
                 var bullet = weapon.GetComponent<Bullet>();
-                bullet.ConfigureBullet((spawner[i].transform.position - transform.position), tag);
+                bullet.ConfigureBullet(((spawner.transform.position - transform.position) + new Vector3(Random.Range(-gunSpray, gunSpray), Random.Range(-gunSpray, gunSpray), 0)), tag);
 
-                Instantiate(weapon, spawner[i].transform.position, Quaternion.identity);
+                Instantiate(weapon, spawner.transform.position, Quaternion.identity);
             }
         }
         _cooldownCounter -= Time.deltaTime;

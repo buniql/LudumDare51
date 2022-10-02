@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy2 : MonoBehaviour
+public class Enemy5 : MonoBehaviour
 {
     public float rotationSpeed;
     public float activationDistance;
-    public GameObject[] spawner;
 
     private Transform _player;
 
@@ -15,6 +14,7 @@ public class Enemy2 : MonoBehaviour
     private StatHolder _holder;
     private Rigidbody2D _rigidbody2D;
     private Dash _dash;
+    private Damage _damage;
 
     private float _cooldownCounter = -1;
     // Start is called before the first frame update
@@ -24,6 +24,7 @@ public class Enemy2 : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _holder = GetComponent<StatHolder>();
         _dash = GetComponent<Dash>();
+        _damage = GetComponent<Damage>();
         _activated = false;
     }
 
@@ -48,7 +49,6 @@ public class Enemy2 : MonoBehaviour
         }
     }
 
-
     void Idle()
     {
         
@@ -58,20 +58,8 @@ public class Enemy2 : MonoBehaviour
     {
         if (_cooldownCounter < 0)
         {
-            Debug.Log("Cooldown: " + _holder.Stat.ShootCooldown);
+            _damage.SetDamage(_holder.Stat.Damage, tag);
             _cooldownCounter = _holder.Stat.ShootCooldown;
-            var weapon = _holder.Stat.Weapon;
-
-            var damage = weapon.GetComponent<Damage>();
-            damage.SetDamage(_holder.Stat.Damage, tag);
-
-            for(int i = 0; i < spawner.Length; i++)
-            {
-                var bullet = weapon.GetComponent<Bullet>();
-                bullet.ConfigureBullet((spawner[i].transform.position - transform.position), tag);
-
-                Instantiate(weapon, spawner[i].transform.position, Quaternion.identity);
-            }
         }
         _cooldownCounter -= Time.deltaTime;
     }
