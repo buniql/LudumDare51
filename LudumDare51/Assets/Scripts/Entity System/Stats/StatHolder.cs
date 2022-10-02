@@ -21,7 +21,10 @@ public class StatHolder : MonoBehaviour
         // To test death
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Stat.Health -= 1000;
+            if (gameObject.name == "Player")
+            {
+                Stat.Health -= 1000;
+            }
         }
     }
 

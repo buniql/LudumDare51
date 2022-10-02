@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [HideInInspector] public int damage;
     [HideInInspector] public Vector2 direction;
     Rigidbody2D _rb;
+    Vector2 direction;
 
     void Start()
     {
@@ -29,5 +30,11 @@ public class Bullet : MonoBehaviour
         holder.Stat.GetDamage(damage);
 
         Destroy(gameObject);
+    }
+
+    public void ConfigureBullet(int damage, Vector2 direction)
+    {
+        this.damage = damage;
+        this.direction = direction;
     }
 }

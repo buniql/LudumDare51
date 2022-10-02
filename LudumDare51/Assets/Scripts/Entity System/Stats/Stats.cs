@@ -52,7 +52,8 @@ public class Stats : ScriptableObject
         health = _maxHealth;
     }
 
-    public void SetDeathEvent(Action action) => _deathEvent = action;
+    public void SetDeathEvent(Action action)
+        => _deathEvent = action;
 
     public void GetDamage(int damage)
         => Health -= damage;
