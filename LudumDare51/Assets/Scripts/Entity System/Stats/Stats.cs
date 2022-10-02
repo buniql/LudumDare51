@@ -6,6 +6,7 @@ public class Stats : ScriptableObject
 {
     [SerializeField] GameObject _weapon;
     [SerializeField] private int _maxHealth;
+    [SerializeField] private float _shootCooldown;
 
     [SerializeField] private int _damage;
     [SerializeField] private float _speed;
@@ -25,6 +26,7 @@ public class Stats : ScriptableObject
     public float DashSpeed { get { return _dashSpeed; } }
     public float DashLength { get { return _dashLength; } }
     public float DashCooldown { get { return _dashCooldown; } }
+    public float ShootCooldown { get { return _shootCooldown; } }
 
     public int Health
     {
@@ -68,6 +70,7 @@ public class Stats : ScriptableObject
         toReturn._dashSpeed += lhs._dashSpeed + rhs._dashSpeed;
         toReturn._dashLength += lhs._dashLength + rhs._dashLength;
         toReturn._dashCooldown += lhs._dashCooldown + rhs._dashCooldown;
+        toReturn._shootCooldown += lhs._shootCooldown + rhs._shootCooldown;
         toReturn._weapon = rhs._weapon;
 
         return toReturn;
