@@ -16,8 +16,6 @@ public class SpawnBullet : MonoBehaviour
         _holder = GetComponentInParent<StatHolder>();
         _cooldownCounter = _holder.Stat.ShootCooldown;
         _mainCamera = Camera.main;
-
-        Debug.Log(_playerTransform.gameObject.name);
     }
 
     void Update()
@@ -36,10 +34,10 @@ public class SpawnBullet : MonoBehaviour
             var weapon = _holder.Stat.Weapon;
 
             var damage = weapon.GetComponent<Damage>();
-            damage.SetDamage(_holder.Stat.Damage);
+            damage.SetDamage(_holder.Stat.Damage, _playerTransform.gameObject.tag);
 
             var bullet = weapon.GetComponent<Bullet>();
-            bullet.ConfigureBullet(direction - transform.position);
+            bullet.ConfigureBullet(direction - transform.position, _playerTransform.gameObject.tag);
 
             GameObject.Instantiate(weapon, gameObject.transform.position, Quaternion.identity);
         }

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     StatHolder playerStats;
     [SerializeField] TextMeshProUGUI hp;
-    // Start is called before the first frame update
+
     void Start()
     {
         playerStats = GameObject.Find("Player").GetComponent<StatHolder>();
@@ -17,5 +18,11 @@ public class UIController : MonoBehaviour
     void Update()
     {
         hp.SetText($"HP: {playerStats.Stat.Health}/{playerStats.Stat.MaxHealth}");
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 }

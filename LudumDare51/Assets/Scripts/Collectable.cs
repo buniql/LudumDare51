@@ -8,8 +8,13 @@ public class Collectable : MonoBehaviour
     {
         if (collider2D.gameObject.tag == "Player")
         {
-            collider2D.gameObject.GetComponent<StatHolder>().Stat.GetDamage(-10);
-            Destroy(gameObject);
+            var stat = collider2D.gameObject.GetComponent<StatHolder>().Stat;
+
+            if (stat.Health < stat.MaxHealth)
+            {
+                stat.GetDamage(-10);
+                Destroy(gameObject);
+            }
         }
     }
 }
