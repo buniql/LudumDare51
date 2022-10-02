@@ -21,12 +21,17 @@ public class Damage : MonoBehaviour
             Debug.Log("No correct Tag, something went wrong");
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    void Attack(Collider2D collider)
     {
         if (collider.gameObject.tag == toAttack)
         {
+            Debug.Log("OnTrigger");
             var holder = collider.gameObject.GetComponent<StatHolder>();
             holder.Stat.GetDamage(_damage);
+            _damage = 0;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collider) => Attack(collider);
+    void OnTriggerStay2D(Collider2D collider) => Attack(collider);
 }

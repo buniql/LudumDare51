@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy4 : MonoBehaviour
 {
     public float activationDistance;
-    public GameObject[] spawner;
 
     private Transform _player;
 
@@ -14,6 +13,7 @@ public class Enemy4 : MonoBehaviour
     private StatHolder _holder;
     private Rigidbody2D _rigidbody2D;
     private Dash _dash;
+    private Damage _damage;
 
     private float _cooldownCounter = -1;
     // Start is called before the first frame update
@@ -23,6 +23,7 @@ public class Enemy4 : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _holder = GetComponent<StatHolder>();
         _dash = GetComponent<Dash>();
+        _damage = GetComponent<Damage>();
         _activated = false;
     }
 
@@ -47,7 +48,6 @@ public class Enemy4 : MonoBehaviour
         }
     }
 
-
     void Idle()
     {
         
@@ -57,7 +57,8 @@ public class Enemy4 : MonoBehaviour
     {
         if (_cooldownCounter < 0)
         {
-            
+            _damage.SetDamage(_holder.Stat.Damage, tag);
+            _cooldownCounter = _holder.Stat.ShootCooldown;
         }
         _cooldownCounter -= Time.deltaTime;
     }
