@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1 : MonoBehaviour
+public class Enemy2 : MonoBehaviour
 {
-    public float movementSpeed;
-    public float turnSpeed;
+    public float rotationSpeed;
     public float activationDistance;
     public GameObject[] spawner;
 
@@ -32,9 +31,8 @@ public class Enemy1 : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 direction = _player.transform.position - transform.position;
-        if (direction.sqrMagnitude > 1f) direction.Normalize();
-        float rotation_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
+
+        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
 
         if ((_player.transform.position - transform.position).sqrMagnitude > activationDistance && !_activated)
             Idle();

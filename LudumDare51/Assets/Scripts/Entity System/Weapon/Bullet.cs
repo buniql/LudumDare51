@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        Debug.Log("hier2");
     }
 
     void FixedUpdate()

@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1 : MonoBehaviour
+public class Enemy4 : MonoBehaviour
 {
-    public float movementSpeed;
-    public float turnSpeed;
     public float activationDistance;
     public GameObject[] spawner;
 
@@ -59,20 +57,7 @@ public class Enemy1 : MonoBehaviour
     {
         if (_cooldownCounter < 0)
         {
-            Debug.Log("Cooldown: " + _holder.Stat.ShootCooldown);
-            _cooldownCounter = _holder.Stat.ShootCooldown;
-            var weapon = _holder.Stat.Weapon;
-
-            var damage = weapon.GetComponent<Damage>();
-            damage.SetDamage(_holder.Stat.Damage);
-
-            for(int i = 0; i < spawner.Length; i++)
-            {
-                var bullet = weapon.GetComponent<Bullet>();
-                bullet.ConfigureBullet((spawner[i].transform.position - transform.position));
-
-                Instantiate(weapon, spawner[i].transform.position, Quaternion.identity);
-            }
+            
         }
         _cooldownCounter -= Time.deltaTime;
     }
