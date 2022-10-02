@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] Stats _stat;
     [HideInInspector] public int damage;
     Rigidbody2D _rb;
+    Vector2 direction;
 
     void Start()
     {
@@ -29,5 +30,11 @@ public class Bullet : MonoBehaviour
         holder.Stat.GetDamage(damage);
 
         Destroy(gameObject);
+    }
+
+    public void ConfigureBullet(int damage, Vector2 direction)
+    {
+        this.damage = damage;
+        this.direction = direction;
     }
 }
