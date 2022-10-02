@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Stats _stat;
-    [HideInInspector] public int damage;
     [HideInInspector] public Vector2 direction;
     Rigidbody2D _rb;
 
@@ -22,17 +21,8 @@ public class Bullet : MonoBehaviour
         _rb.MovePosition(_rb.position + direction * _stat.Speed);
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    public void ConfigureBullet(Vector2 direction)
     {
-        var holder = collider.gameObject.GetComponent<StatHolder>();
-        holder.Stat.GetDamage(damage);
-
-        Destroy(gameObject);
-    }
-
-    public void ConfigureBullet(int damage, Vector2 direction)
-    {
-        this.damage = damage;
         this.direction = direction;
     }
 }

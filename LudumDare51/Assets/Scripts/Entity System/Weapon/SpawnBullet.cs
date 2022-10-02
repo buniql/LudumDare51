@@ -34,8 +34,12 @@ public class SpawnBullet : MonoBehaviour
         {
             _cooldownCounter = _holder.Stat.ShootCooldown;
             var weapon = _holder.Stat.Weapon;
+
+            var damage = weapon.GetComponent<Damage>();
+            damage.SetDamage(_holder.Stat.Damage);
+
             var bullet = weapon.GetComponent<Bullet>();
-            bullet.ConfigureBullet(_holder.Stat.Damage, direction - transform.position);
+            bullet.ConfigureBullet(direction - transform.position);
 
             GameObject.Instantiate(weapon, gameObject.transform.position, Quaternion.identity);
         }
