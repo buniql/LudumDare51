@@ -6,21 +6,21 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] Stats _stat;
     [HideInInspector] public int damage;
+    [HideInInspector] public Vector2 direction;
     Rigidbody2D _rb;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - GameObject.Find("Player").transform.position;
     }
 
     void FixedUpdate()
     {
-        var dir = new Vector2(1, 0);
+        if (direction.sqrMagnitude > 1f)
+            direction.Normalize();
 
-        if (dir.sqrMagnitude > 1f)
-            dir.Normalize();
-
-        _rb.MovePosition(_rb.position + dir * _stat.Speed);
+        _rb.MovePosition(_rb.position + direction * _stat.Speed);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
