@@ -641,7 +641,7 @@ MonoBehaviour:
   PlayerForceField: 7
   MaxEnemyAmount: 20
   Enemys:
-  - {fileID: 2622893531276828412, guid: 0da26fba165d5a34c99b7c48b26597ea, type: 3}
+  - {fileID: 2622893531276828412, guid: 22c37bc77017e054aa1a3860e19cb943, type: 3}
 --- !u!1 &1626762278
 GameObject:
   m_ObjectHideFlags: 0

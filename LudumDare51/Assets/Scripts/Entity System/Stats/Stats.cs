@@ -4,8 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Stats Object", menuName = "Objects/Stats")]
 public class Stats : ScriptableObject
 {
-    private Action _deathEvent;
-
+    [SerializeField] GameObject _weapon;
     [SerializeField] private int _maxHealth;
 
     [SerializeField] private int _damage;
@@ -17,8 +16,10 @@ public class Stats : ScriptableObject
     [SerializeField] private float _dashLength;
     [SerializeField] private float _dashCooldown;
 
+    private Action _deathEvent;
     private int health;
 
+    public GameObject Weapon { get { return _weapon; } }
     public int Damage { get { return _damage; } }
     public float Speed { get { return _speed; } }
     public float DashSpeed { get { return _dashSpeed; } }
@@ -46,12 +47,15 @@ public class Stats : ScriptableObject
         }
     }
 
-    void Awake() => Health = _maxHealth;
+    public void Start()
+    {
+        health = _maxHealth;
+    }
 
     public void SetDeathEvent(Action action) => _deathEvent = action;
 
-    public void GetDamage(Stats enemy)
-        => health -= enemy._damage;
+    public void GetDamage(int damage)
+        => Health -= damage;
 
     public static Stats operator +(Stats lhs, Stats rhs)
     {
@@ -63,6 +67,7 @@ public class Stats : ScriptableObject
         toReturn._dashSpeed += lhs._dashSpeed + rhs._dashSpeed;
         toReturn._dashLength += lhs._dashLength + rhs._dashLength;
         toReturn._dashCooldown += lhs._dashCooldown + rhs._dashCooldown;
+        toReturn._weapon = rhs._weapon;
 
         return toReturn;
     }

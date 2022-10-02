@@ -8,14 +8,18 @@ public class SpawnBullet : MonoBehaviour
 
     void Awake()
     {
-        _holder = GetComponent<StatHolder>();
+        _holder = GetComponentInParent<StatHolder>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            var weapon = _holder.Stat.Weapon;
+            var bullet = weapon.GetComponent<Bullet>();
+            bullet.damage = _holder.Stat.Damage;
 
+            GameObject.Instantiate(weapon, gameObject.transform.position, Quaternion.identity);
         }
     }
 }

@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] Stats _stat;
+    [HideInInspector] public int damage;
+    Rigidbody2D _rb;
+
     void Start()
     {
-        
+        _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        var dir = new Vector2(1, 0);
+
+        if (dir.sqrMagnitude > 1f)
+            dir.Normalize();
+
+        _rb.MovePosition(_rb.position + dir * _stat.Speed);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        var holder = collider.gameObject.GetComponent<StatHolder>();
+        holder.Stat.GetDamage(damage);
+
+        Destroy(gameObject);
     }
 }

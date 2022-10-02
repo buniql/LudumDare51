@@ -24,8 +24,7 @@ public class EntitySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Vector3 randomPosition = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f).normalized * Random.Range(PlayerForceField, 5* PlayerForceField);
-
+        Vector3 randomPosition = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f).normalized * Random.Range(PlayerForceField, 5 * PlayerForceField);
         GameObject enemy = GameObject.Instantiate(Enemys[Random.Range(0, Enemys.Length - 1)], Player.transform.position + randomPosition, Quaternion.identity);
         enemy.transform.parent = GameObject.Find("Entity Spawner").transform;
         CurrentEnemyAmount++;

@@ -12,7 +12,8 @@ public class StatHolder : MonoBehaviour
 
     void Awake()
     {
-        Stat.SetDeathEvent(GetComponent<BaseDeath>().Death);
+        _stat = Instantiate(_stat);
+        Stat.Start();
     }
 
     void Update()
