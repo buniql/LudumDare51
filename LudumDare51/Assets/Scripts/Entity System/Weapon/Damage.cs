@@ -13,7 +13,5 @@ public class Damage : MonoBehaviour
     {
         var holder = collider.gameObject.GetComponent<StatHolder>();
         holder.Stat.GetDamage(_damage);
-
-        Destroy(gameObject);
     }
 }

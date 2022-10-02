@@ -21,6 +21,9 @@ public class Bullet : MonoBehaviour
         _rb.MovePosition(_rb.position + direction * _stat.Speed);
     }
 
+    void OnTriggerEnter2D(Collider2D collider) =>
+        Destroy(gameObject);
+
     public void ConfigureBullet(Vector2 direction)
     {
         this.direction = direction;
