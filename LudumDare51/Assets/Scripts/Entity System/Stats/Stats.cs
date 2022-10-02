@@ -27,6 +27,7 @@ public class Stats : ScriptableObject
     public float DashLength { get { return _dashLength; } }
     public float DashCooldown { get { return _dashCooldown; } }
     public float ShootCooldown { get { return _shootCooldown; } }
+    public int MaxHealth { get { return _maxHealth; } }
 
     public int Health
     {
