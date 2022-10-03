@@ -9,6 +9,7 @@ public class Enemy4 : MonoBehaviour
     private Transform _player;
 
     private bool _activated;
+    private int _maxHealth;
 
     private StatHolder _holder;
     private Rigidbody2D _rigidbody2D;
@@ -24,6 +25,7 @@ public class Enemy4 : MonoBehaviour
         _holder = GetComponent<StatHolder>();
         _dash = GetComponent<Dash>();
         _damage = GetComponent<Damage>();
+        _maxHealth = _holder.Stat.Health;
         _activated = false;
     }
 
@@ -31,9 +33,14 @@ public class Enemy4 : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 direction = _player.transform.position - transform.position;
-        if (direction.sqrMagnitude > 1f) direction.Normalize();
-        float rotation_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
+
+        if (direction.x > 0)
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        if (direction.x < 0)
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+
+        if (_holder.Stat.Health != _maxHealth) _activated = true;
 
         if ((_player.transform.position - transform.position).sqrMagnitude > activationDistance && !_activated)
             Idle();

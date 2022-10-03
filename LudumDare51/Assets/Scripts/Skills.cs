@@ -25,12 +25,18 @@ public class Skills : ScriptableObject
             if (statValue is int)
             {
                 if ((int)statValue != 0)
-                    cache += $"{value.Name}: {(int)statValue}\n";
+                {
+                    var str = (int)statValue < 0 ? ((int)statValue).ToString() : "+" + (int)statValue;
+                    cache += $"{value.Name}: {str}\n";
+                }
             }
             else if (statValue is float)
             {
                 if ((float)statValue != 0)
-                    cache += $"{value.Name}: {(float)statValue}\n";
+                {
+                    var str = (float)statValue < 0 ? ((float)statValue).ToString() : "+" + (float)statValue;
+                    cache += $"{value.Name}: {str}\n";
+                }
             }
             else if (statValue is GameObject)
             {

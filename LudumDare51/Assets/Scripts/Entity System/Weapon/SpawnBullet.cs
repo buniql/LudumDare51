@@ -1,10 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
+
 using UnityEngine;
 
 public class SpawnBullet : MonoBehaviour
 {
+    StatHolder _holder;
+    public static ProjectileType projectileType;
+    public ProjectileType type;
+    private float _cooldownCounter;
+    private Animator _playerAnimator;
+
+    Camera _mainCamera;
+    Transform _playerTransform;
+
     public enum ProjectileType
     {
         Default, //default spell
@@ -15,14 +23,10 @@ public class SpawnBullet : MonoBehaviour
         Blob //stays at mouseposition
     }
 
-    StatHolder _holder;
-    private float _cooldownCounter;
-
-    Camera _mainCamera;
-    Transform _playerTransform;
-
     void Awake()
     {
+        _playerAnimator = GameObject.Find("PlayerSprite").GetComponent<Animator>();
+        projectileType = type;
         _playerTransform = GameObject.Find("Player").GetComponent<Transform>();
         _holder = GetComponentInParent<StatHolder>();
         _cooldownCounter = _holder.Stat.ShootCooldown;
@@ -41,6 +45,8 @@ public class SpawnBullet : MonoBehaviour
 
         if (Input.GetMouseButton(0) && _cooldownCounter < 0)
         {
+            _playerAnimator.SetBool("Attack", true);
+
             _cooldownCounter = _holder.Stat.ShootCooldown;
             var weapon = _holder.Stat.Weapon;
             Debug.Log(weapon.gameObject.name);
@@ -53,6 +59,8 @@ public class SpawnBullet : MonoBehaviour
 
             GameObject.Instantiate(weapon, gameObject.transform.position, Quaternion.identity);
         }
+
+        if(!Input.GetMouseButton(0) || _cooldownCounter < _holder.Stat.ShootCooldown/2) _playerAnimator.SetBool("Attack", false);
 
         _cooldownCounter -= Time.deltaTime;
     }

@@ -78,6 +78,7 @@ public class Bullet : MonoBehaviour
         // if(_currentTime > maxTime)
         //     Destroy(gameObject);
 
+
         _currentTime += Time.deltaTime;
     }
 
