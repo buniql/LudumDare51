@@ -10,6 +10,8 @@ public class SpawnBullet : MonoBehaviour
     private float _cooldownCounter;
     private Animator _playerAnimator;
 
+    AudioSource _audio;
+
     Camera _mainCamera;
     Transform _playerTransform;
 
@@ -31,6 +33,7 @@ public class SpawnBullet : MonoBehaviour
         _holder = GetComponentInParent<StatHolder>();
         _cooldownCounter = _holder.Stat.ShootCooldown;
         _mainCamera = Camera.main;
+        _audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -49,7 +52,6 @@ public class SpawnBullet : MonoBehaviour
 
             _cooldownCounter = _holder.Stat.ShootCooldown;
             var weapon = _holder.Stat.Weapon;
-            Debug.Log(weapon.gameObject.name);
 
             var damage = weapon.GetComponent<Damage>();
             damage.SetDamage(_holder.Stat.Damage, _playerTransform.gameObject.tag);
@@ -57,10 +59,12 @@ public class SpawnBullet : MonoBehaviour
             var bullet = weapon.GetComponent<Bullet>(); //change spawn amount?
             bullet.ConfigureBullet(direction - transform.position, _playerTransform.gameObject.tag);
 
+            _audio.Play();
+
             GameObject.Instantiate(weapon, gameObject.transform.position, Quaternion.identity);
         }
 
-        if(!Input.GetMouseButton(0) || _cooldownCounter < _holder.Stat.ShootCooldown/2) _playerAnimator.SetBool("Attack", false);
+        if (!Input.GetMouseButton(0) || _cooldownCounter < _holder.Stat.ShootCooldown / 2) _playerAnimator.SetBool("Attack", false);
 
         _cooldownCounter -= Time.deltaTime;
     }

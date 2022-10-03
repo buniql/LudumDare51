@@ -7,6 +7,8 @@ public class DamageTickController : MonoBehaviour
     [SerializeField] int damageTime;
     [SerializeField] int damage;
 
+    [SerializeField] UIController ui;
+
     StatHolder player;
 
     void Start()
@@ -19,7 +21,12 @@ public class DamageTickController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(damageTime);
+            for (int i = damageTime; i >= 0; i--)
+            {
+                ui.SetTimedDamage(i);
+                yield return new WaitForSeconds(1);
+            }
+
             player.Stat.GetDamage(damage);
         }
     }

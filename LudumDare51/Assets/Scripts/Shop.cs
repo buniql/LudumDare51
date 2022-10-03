@@ -63,7 +63,6 @@ public class Shop : MonoBehaviour
 
     public void AddSkill(int slot)
     {
-        Debug.Log("It costs: " + randomSkillsCache[slot].Costs + " Lives");
         _holder.AddStat(randomSkillsCache[slot].Stat);
         _holder.Stat.GetDamage(20);
 
@@ -76,7 +75,13 @@ public class Shop : MonoBehaviour
     IEnumerator ShopCooldown()
     {
         shopCanBeOpened = false;
-        yield return new WaitForSeconds(_shopCooldown);
+
+        for (int i = _shopCooldown; i >= 0; i--)
+        {
+            ui.ShopOpen(i);
+            yield return new WaitForSeconds(1);
+        }
+
         shopCanBeOpened = true;
     }
 }
