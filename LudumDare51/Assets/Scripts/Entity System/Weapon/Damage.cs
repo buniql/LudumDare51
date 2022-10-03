@@ -25,7 +25,6 @@ public class Damage : MonoBehaviour
     {
         if (collider.gameObject.tag == toAttack)
         {
-            Debug.Log("OnTrigger");
             var holder = collider.gameObject.GetComponent<StatHolder>();
             holder.Stat.GetDamage(_damage);
             _damage = 0;
