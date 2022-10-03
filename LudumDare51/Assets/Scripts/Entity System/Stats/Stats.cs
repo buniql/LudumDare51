@@ -18,7 +18,7 @@ public class Stats : ScriptableObject
     [SerializeField] private float _dashLength;
     [SerializeField] private float _dashCooldown;
 
-    private Action _deathEvent;
+    [SerializeField] public Action _deathEvent;
     private int health;
 
     public GameObject Weapon { get { return _weapon; } }
@@ -49,9 +49,8 @@ public class Stats : ScriptableObject
                     _deathEvent.Invoke();
                 else
                 {
-                    if(test)
+                    if (test)
                     {
-                        Debug.Log("Hall asdhnosaipdhsbaiodhiasopdapsiolödbhpaösdhpböoiasbposabndopnbo");
                         Time.timeScale = 0;
                         deadPanel.gameObject.SetActive(true);
                     }
@@ -67,28 +66,14 @@ public class Stats : ScriptableObject
         health = _maxHealth;
     }
 
-    private void Update()
-    {
-        if (health <= 0)
-        {
-            if (test)
-            {
-                Time.timeScale = 0;
-                deadPanel.gameObject.SetActive(true);
-            }
-        }
-    }
-
     public void IchBinSoSad(Image deadPanel)
     {
         test = true;
-        Debug.Log("asdnmasöldnhaslöokdnhsalkoödnsaköoldn");
-          this.deadPanel = deadPanel;
+        this.deadPanel = deadPanel;
     }
 
     public void SetDeathEvent(Action action)
     {
-        Debug.Log("DathEvent is null: " + _deathEvent == null);
         _deathEvent = action;
     }
 
@@ -108,6 +93,7 @@ public class Stats : ScriptableObject
         toReturn._shootCooldown += lhs._shootCooldown + rhs._shootCooldown;
         Mathf.Clamp(toReturn._shootCooldown, .2f, 10f);
         toReturn.Health = lhs.Health;
+        toReturn._deathEvent = lhs._deathEvent;
 
         if (rhs.Weapon != null)
             toReturn._weapon = rhs._weapon;
