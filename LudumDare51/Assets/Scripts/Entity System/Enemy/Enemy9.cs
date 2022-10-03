@@ -34,6 +34,7 @@ public class Enemy9 : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 direction = _player.transform.position - transform.position;
+        if (direction.sqrMagnitude > 1f) direction.Normalize();
 
         if (direction.x > 0)
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -41,7 +42,6 @@ public class Enemy9 : MonoBehaviour
         if (direction.x < 0)
             transform.rotation = Quaternion.Euler(0, 180, 0);
 
-        if (direction.sqrMagnitude > 1f) direction.Normalize();
         float rotation_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.Find("Rotater").transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
 
