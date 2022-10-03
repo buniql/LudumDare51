@@ -170,13 +170,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stat: {fileID: 11400000, guid: 1425d36e86d1df846bb11ad82e1d1350, type: 2}
+  maxTime: 1
   projectileType: 1
   projectileSprites:
   - {fileID: 21300000, guid: 0993e549800df674daa8c040ecd715d6, type: 3}
   - {fileID: 21300000, guid: 5a9f47bba69854c4082ead856ff296eb, type: 3}
   - {fileID: 21300000, guid: 319bf78d87c01c0409ad0086936f40c6, type: 3}
-  direction: {x: 0, y: 0}
-  toAttack: 
+  direction: {x: -5.075862, y: -1.6318508}
+  toAttack: Enemy
 --- !u!114 &5043177311818092312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,5 +190,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7417b79bd82f0384db37a3a74f480334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0
-  toAttack: 
+  _damage: 2
+  toAttack: Enemy

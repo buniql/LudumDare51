@@ -717,6 +717,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fc53c616bfbe2b8468eccc7a9a79bc0a, type: 2}
   - {fileID: 11400000, guid: cc90c7696cb3db14f945b647d9adc0b2, type: 2}
   - {fileID: 11400000, guid: 3e443a4fbc0732e4798d777167107ac2, type: 2}
+  _shopCooldown: 5
 --- !u!4 &854971801
 Transform:
   m_ObjectHideFlags: 0
@@ -1289,6 +1290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68e335d84b52064999435944e5d3fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1652659304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,6 +1596,10 @@ MonoBehaviour:
   - {fileID: 2060481585}
   - {fileID: 780791323}
   - {fileID: 1009771715}
+  buttons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1791168500
 Transform:
   m_ObjectHideFlags: 0

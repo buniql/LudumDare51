@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 1 4
   m_EditorClassIdentifier: 
   costs: 10
-  stat: {fileID: 11400000, guid: b6c0a840179a05842aa192135d1cc629, type: 2}
+  stat: {fileID: 11400000, guid: ee59da5c77f73ab4798b6153e835fbf3, type: 2}

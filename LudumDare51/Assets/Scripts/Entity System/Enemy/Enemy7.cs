@@ -10,7 +10,7 @@ public class Enemy7 : MonoBehaviour
 
     private Transform _player;
     private CircleCollider2D _circleCollider;
-    private Sprite _lastSprite;
+    private Vector3 lastSize;
 
     private bool _activated;
     private int _maxHealth;
@@ -56,11 +56,12 @@ public class Enemy7 : MonoBehaviour
         {
             transform.localScale += Vector3.one * sizeIncrease * Time.deltaTime;
 
-            if (spriteRenderer.sprite != _lastSprite)
+            if (transform.localScale != lastSize)
             {
+                Debug.Log("Gettng bigger");
                 Vector3 spriteHalfSize = spriteRenderer.sprite.bounds.extents;
                 _circleCollider.radius = spriteHalfSize.x > spriteHalfSize.y ? spriteHalfSize.x : spriteHalfSize.y;
-                _lastSprite = spriteRenderer.sprite;
+                lastSize = transform.localScale;
             }
 
             _rigidbody2D.MovePosition(transform.position + direction * _holder.Stat.Speed);
