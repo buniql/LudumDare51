@@ -10,6 +10,7 @@ public class Enemy5 : MonoBehaviour
     private Transform _player;
 
     private bool _activated;
+    private int _maxHealth;
 
     private StatHolder _holder;
     private Rigidbody2D _rigidbody2D;
@@ -25,6 +26,7 @@ public class Enemy5 : MonoBehaviour
         _holder = GetComponent<StatHolder>();
         _dash = GetComponent<Dash>();
         _damage = GetComponent<Damage>();
+        _maxHealth = _holder.Stat.Health;
         _activated = false;
     }
 
@@ -35,6 +37,8 @@ public class Enemy5 : MonoBehaviour
         if (direction.sqrMagnitude > 1f) direction.Normalize();
 
         transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+
+        if (_holder.Stat.Health != _maxHealth) _activated = true;
 
         if ((_player.transform.position - transform.position).sqrMagnitude > activationDistance && !_activated)
             Idle();
