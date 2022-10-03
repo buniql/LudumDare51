@@ -737,7 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99a138992f7b644283644957148861e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2622893531276828412, guid: 42482ac669ded6448b2d5c567787dd63, type: 3}
+  bullet: {fileID: 2622893531276828412, guid: 439df0e55d845de4f9b0b19fc441b057, type: 3}
   deadPanel: {fileID: 890228399}
 --- !u!61 &831660689
 BoxCollider2D:
@@ -1261,7 +1261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68e335d84b52064999435944e5d3fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
 --- !u!1 &1652659304
 GameObject:
   m_ObjectHideFlags: 0

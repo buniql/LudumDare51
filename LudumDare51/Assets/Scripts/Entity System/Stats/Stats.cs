@@ -72,9 +72,12 @@ public class Stats : ScriptableObject
         toReturn._dashLength += lhs._dashLength + rhs._dashLength;
         toReturn._dashCooldown += lhs._dashCooldown + rhs._dashCooldown;
         toReturn._shootCooldown += lhs._shootCooldown + rhs._shootCooldown;
+        toReturn.Health = lhs.Health;
 
         if (rhs.Weapon != null)
             toReturn._weapon = rhs._weapon;
+        else
+            toReturn._weapon = lhs._weapon;
 
         return toReturn;
     }

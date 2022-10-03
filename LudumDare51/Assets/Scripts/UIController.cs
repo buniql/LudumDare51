@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,7 +14,7 @@ public class UIController : MonoBehaviour
     [Space(10)]
     [SerializeField] Image shopPanel;
     [SerializeField] TextMeshProUGUI[] shopSlots;
-
+    [SerializeField] Button[] buttons;
 
     void Start()
     {
@@ -41,20 +42,30 @@ public class UIController : MonoBehaviour
             if (i == 0 && skills[1] == null)
             {
                 shopSlots[1].text = skills[i].ToString();
-                shopSlots[1].gameObject.SetActive(true);
+
+                if (buttons[1] != null)
+                    buttons[1].gameObject.SetActive(true);
 
                 return;
             }
             else if (i == 1 && skills[2] == null)
             {
                 shopSlots[2].text = skills[i].ToString();
-                shopSlots[2].gameObject.SetActive(true);
+
+                if (buttons[2] != null)
+                    buttons[2].gameObject.SetActive(true);
 
                 return;
             }
 
             shopSlots[i].text = skills[i].ToString();
-            shopSlots[i].gameObject.SetActive(true);
+
+            if (buttons[i] != null)
+            {
+                buttons[i].gameObject.SetActive(true);
+            }
+            else
+                Debug.Log("Eine Tragik");
         }
     }
 
@@ -62,8 +73,9 @@ public class UIController : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        foreach (var slot in shopSlots)
-            slot.gameObject.SetActive(false);
+        foreach (var button in buttons)
+            if (button != null)
+                button.gameObject.SetActive(false);
 
         shopPanel.gameObject.SetActive(false);
     }

@@ -16,18 +16,6 @@ public class StatHolder : MonoBehaviour
         Stat.Start();
     }
 
-    void Update()
-    {
-        // To test death
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            if (gameObject.name == "Player")
-            {
-                Stat.Health -= 1000;
-            }
-        }
-    }
-
     public void AddStat(Stats toAdd)
     {
         _stat += toAdd;
