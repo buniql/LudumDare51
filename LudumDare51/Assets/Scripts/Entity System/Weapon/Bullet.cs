@@ -126,7 +126,7 @@ public class Bullet : MonoBehaviour
                         _audio.Play();
                     } catch (NullReferenceException)
                     {
-                        //GameJam Solution ;)
+                        //come on its a GameJam :)
                     }
                     Destroy(gameObject, 0.5f);
                     break;

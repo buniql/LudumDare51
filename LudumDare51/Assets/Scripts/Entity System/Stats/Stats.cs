@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Stats Object", menuName = "Objects/Stats")]
 public class Stats : ScriptableObject
@@ -29,6 +30,10 @@ public class Stats : ScriptableObject
     public float ShootCooldown { get { return _shootCooldown; } }
     public int MaxHealth { get { return _maxHealth; } }
 
+
+    public Image deadPanel;
+    public bool test = false;
+
     public int Health
     {
         get { return health; }
@@ -43,7 +48,14 @@ public class Stats : ScriptableObject
                 if (_deathEvent != null)
                     _deathEvent.Invoke();
                 else
-                    Debug.Log("Death Event is null");
+                {
+                    if(test)
+                    {
+                        Debug.Log("Hall asdhnosaipdhsbaiodhiasopdapsiolödbhpaösdhpböoiasbposabndopnbo");
+                        Time.timeScale = 0;
+                        deadPanel.gameObject.SetActive(true);
+                    }
+                }
             }
             else
                 health = value;
@@ -55,8 +67,30 @@ public class Stats : ScriptableObject
         health = _maxHealth;
     }
 
+    private void Update()
+    {
+        if (health <= 0)
+        {
+            if (test)
+            {
+                Time.timeScale = 0;
+                deadPanel.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void IchBinSoSad(Image deadPanel)
+    {
+        test = true;
+        Debug.Log("asdnmasöldnhaslöokdnhsalkoödnsaköoldn");
+          this.deadPanel = deadPanel;
+    }
+
     public void SetDeathEvent(Action action)
-        => _deathEvent = action;
+    {
+        Debug.Log("DathEvent is null: " + _deathEvent == null);
+        _deathEvent = action;
+    }
 
     public void GetDamage(int damage)
         => Health -= damage;
