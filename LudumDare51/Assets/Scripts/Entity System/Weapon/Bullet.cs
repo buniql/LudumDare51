@@ -6,6 +6,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Stats _stat;
+    private float _currentTime = 0;
+    [SerializeField] float maxTime;
     [SerializeField] SpawnBullet.ProjectileType projectileType;
     [SerializeField] Sprite[] projectileSprites;
     [HideInInspector] public Vector2 direction;
@@ -68,6 +70,11 @@ public class Bullet : MonoBehaviour
             direction.Normalize();
 
         _rb.MovePosition(_rb.position + direction * _stat.Speed);
+
+        if(_currentTime > maxTime)
+            Destroy(gameObject);
+
+        _currentTime += Time.deltaTime;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
