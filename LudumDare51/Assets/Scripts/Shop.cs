@@ -9,7 +9,18 @@ public class Shop : MonoBehaviour
     [Space(10)]
 
     [SerializeField] List<Skills> skills;
+    [SerializeField] int _shopCooldown;
+
     bool shopIsOpen;
+    bool shopCanBeOpened = true;
+
+    StatHolder _holder;
+    Skills[] randomSkillsCache;
+
+    void Start()
+    {
+        _holder = GameObject.Find("Player").GetComponent<StatHolder>();
+    }
 
     Skills[] GetRandomSkills()
     {
@@ -29,12 +40,14 @@ public class Shop : MonoBehaviour
             skills.RemoveAt(index);
         }
 
+        randomSkillsCache = randomSkills;
+
         return randomSkills;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !shopIsOpen)
+        if (Input.GetKeyDown(KeyCode.Escape) && !shopIsOpen && shopCanBeOpened)
         {
             ui.OpenShop(GetRandomSkills());
             shopIsOpen = true;
@@ -43,6 +56,27 @@ public class Shop : MonoBehaviour
         {
             ui.CloseShop();
             shopIsOpen = false;
+
+            StartCoroutine(ShopCooldown());
         }
+    }
+
+    public void AddSkill(int slot)
+    {
+        Debug.Log("It costs: " + randomSkillsCache[slot].Costs + " Lives");
+        _holder.AddStat(randomSkillsCache[slot].Stat);
+        _holder.Stat.GetDamage(20);
+
+        ui.CloseShop();
+        shopIsOpen = false;
+
+        StartCoroutine(ShopCooldown());
+    }
+
+    IEnumerator ShopCooldown()
+    {
+        shopCanBeOpened = false;
+        yield return new WaitForSeconds(_shopCooldown);
+        shopCanBeOpened = true;
     }
 }

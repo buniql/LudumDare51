@@ -20,11 +20,15 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        projectileType = SpawnBullet.projectileType;
         _collider = transform.Find("Sprite").GetComponent<CircleCollider2D>();
         _spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
 
+        SetBulletSprite();
+    }
+
+    void SetBulletSprite()
+    {
         switch (projectileType) //Set Sprite and resize accordingly
         {
             case SpawnBullet.ProjectileType.Default:
@@ -85,10 +89,10 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void ConfigureBullet(Vector2 direction, String tag, SpawnBullet.ProjectileType type)
+    public void ConfigureBullet(Vector2 direction, String tag)
     {
-        this.projectileType = type;
         this.direction = direction;
+        // SetBulletSprite();
 
         if (tag == "Player")
             toAttack = "Enemy";

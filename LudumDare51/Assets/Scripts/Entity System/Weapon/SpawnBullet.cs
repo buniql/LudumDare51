@@ -1,4 +1,5 @@
 using System.Collections;
+
 using UnityEngine;
 
 public class SpawnBullet : MonoBehaviour
@@ -20,7 +21,6 @@ public class SpawnBullet : MonoBehaviour
         AutoAim, //targets closes enemy
         Big, //giant projectile
         Blob //stays at mouseposition
-
     }
 
     void Awake()
@@ -49,12 +49,13 @@ public class SpawnBullet : MonoBehaviour
 
             _cooldownCounter = _holder.Stat.ShootCooldown;
             var weapon = _holder.Stat.Weapon;
+            Debug.Log(weapon.gameObject.name);
 
             var damage = weapon.GetComponent<Damage>();
             damage.SetDamage(_holder.Stat.Damage, _playerTransform.gameObject.tag);
 
             var bullet = weapon.GetComponent<Bullet>(); //change spawn amount?
-            bullet.ConfigureBullet(direction - transform.position, _playerTransform.gameObject.tag, projectileType);
+            bullet.ConfigureBullet(direction - transform.position, _playerTransform.gameObject.tag);
 
             GameObject.Instantiate(weapon, gameObject.transform.position, Quaternion.identity);
         }

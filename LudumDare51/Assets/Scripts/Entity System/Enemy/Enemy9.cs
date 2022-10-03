@@ -50,7 +50,7 @@ public class Enemy9 : MonoBehaviour
         if ((_player.transform.position - transform.position).sqrMagnitude > activationDistance && !_activated)
             Idle();
         else
-            if(!_activated) _activated = true;
+            if (!_activated) _activated = true;
 
         if (_activated)
         {
@@ -63,7 +63,7 @@ public class Enemy9 : MonoBehaviour
 
     void Idle()
     {
-        
+
     }
 
     void Attack()
@@ -79,10 +79,10 @@ public class Enemy9 : MonoBehaviour
             var damage = weapon.GetComponent<Damage>();
             damage.SetDamage(_holder.Stat.Damage, tag);
 
-            for(int i = 0; i < gunRounds; i++)
+            for (int i = 0; i < gunRounds; i++)
             {
                 var bullet = weapon.GetComponent<Bullet>();
-                bullet.ConfigureBullet(((spawner.transform.position - transform.position) + new Vector3(Random.Range(-gunSpray, gunSpray), Random.Range(-gunSpray, gunSpray), 0)), tag, SpawnBullet.ProjectileType.Default);
+                bullet.ConfigureBullet(((spawner.transform.position - transform.position) + new Vector3(Random.Range(-gunSpray, gunSpray), Random.Range(-gunSpray, gunSpray), 0)), tag);
 
                 Instantiate(weapon, spawner.transform.position, Quaternion.identity);
             }
