@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f9da47651acff488bc772d8e2224f6, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 0}
+  _weapon: {fileID: 2622893531276828412, guid: 7ad30f0c10749d34caf728b593bcd2a4, type: 3}
   _maxHealth: 40
   _shootCooldown: 0
   _damage: 0
-  _speed: -0.4
+  _speed: 0.05
   _dashSpeed: 0
   _dashLength: 0
   _dashCooldown: 0

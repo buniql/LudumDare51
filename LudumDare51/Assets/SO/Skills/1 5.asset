@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d71f9eda3b9f44bae7599c048d2b28, type: 3}
   m_Name: 1 5
   m_EditorClassIdentifier: 
-  costs: 0
+  costs: 10
   stat: {fileID: 11400000, guid: f56b4e22873e9364390b6748c3a5f730, type: 2}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f9da47651acff488bc772d8e2224f6, type: 3}
   m_Name: 19
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 0}
+  _weapon: {fileID: 2622893531276828412, guid: 52d60d4ba4936de4ba2243b6366488cc, type: 3}
   _maxHealth: 0
   _shootCooldown: -0.1
   _damage: 0

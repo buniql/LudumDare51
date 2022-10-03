@@ -16,7 +16,7 @@ MonoBehaviour:
   _maxHealth: 0
   _shootCooldown: 0
   _damage: 0
-  _speed: 3
+  _speed: 0.1
   _dashSpeed: 0
   _dashLength: 0
   _dashCooldown: 0

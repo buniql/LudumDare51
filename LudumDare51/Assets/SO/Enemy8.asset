@@ -15,7 +15,7 @@ MonoBehaviour:
   _weapon: {fileID: 2622893531276828412, guid: 42482ac669ded6448b2d5c567787dd63, type: 3}
   _maxHealth: 20
   _shootCooldown: 2
-  _damage: 2
+  _damage: 10
   _speed: 0.2
   _dashSpeed: 0.7
   _dashLength: 0.2

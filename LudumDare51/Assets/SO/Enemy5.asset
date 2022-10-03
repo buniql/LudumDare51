@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Enemy5
   m_EditorClassIdentifier: 
   _weapon: {fileID: 2622893531276828412, guid: 42482ac669ded6448b2d5c567787dd63, type: 3}
-  _maxHealth: 20
+  _maxHealth: 25
   _shootCooldown: 2
-  _damage: 3
+  _damage: 15
   _speed: 0.3
   _dashSpeed: 0.7
   _dashLength: 0.2
