@@ -9,6 +9,8 @@ public class EntitySpawner : MonoBehaviour
     private int CurrentEnemyAmount;
     public int MaxEnemyAmount;
 
+    public int[] probEnemy;
+
     public GameObject[] Enemys;
 
     private void Start()
@@ -20,12 +22,31 @@ public class EntitySpawner : MonoBehaviour
     {
         if (CurrentEnemyAmount < MaxEnemyAmount)
             SpawnEnemy();
+
+        CurrentEnemyAmount = transform.childCount;
     }
 
     void SpawnEnemy()
     {
-        Vector3 randomPosition = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f).normalized * Random.Range(PlayerForceField, 5 * PlayerForceField);
-        GameObject enemy = GameObject.Instantiate(Enemys[Random.Range(0, Enemys.Length - 1)], Player.transform.position + randomPosition, Quaternion.identity);
+        Vector3 randomPosition = new Vector3(Random.Range(-100f, 100f), Random.Range(-80f, 80f), 0f);
+
+        while(Vector3.Distance(randomPosition,Player.transform.position) < PlayerForceField)
+            randomPosition = new Vector3(Random.Range(-100f, 100f), Random.Range(-80f, 80f), 0f);
+
+        int index = 0;
+        int sum = 0;
+        int value = Random.Range(0, 100);
+        for(int i = 0; i < probEnemy.Length; i++)
+        {
+            sum += probEnemy[i];
+            if(value < sum)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        GameObject enemy = GameObject.Instantiate(Enemys[Random.Range(0, Enemys.Length - 1)], randomPosition, Quaternion.identity);
         enemy.transform.parent = GameObject.Find("Entity Spawner").transform;
         CurrentEnemyAmount++;
     }

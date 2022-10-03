@@ -128,7 +128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2622893531276828412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -176,8 +176,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0993e549800df674daa8c040ecd715d6, type: 3}
   - {fileID: 21300000, guid: 5a9f47bba69854c4082ead856ff296eb, type: 3}
   - {fileID: 21300000, guid: 319bf78d87c01c0409ad0086936f40c6, type: 3}
-  direction: {x: 5.802717, y: 7.019344}
-  toAttack: Enemy
+  direction: {x: 0.8242874, y: -0.6674957}
+  toAttack: Player
 --- !u!114 &5043177311818092312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,4 +191,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 2
-  toAttack: Enemy
+  toAttack: Player

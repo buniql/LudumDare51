@@ -33,14 +33,13 @@ public class Enemy2 : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 direction = _player.transform.position - transform.position;
+        if (direction.sqrMagnitude > 1f) direction.Normalize();
 
         if (direction.x > 0)
             transform.rotation = Quaternion.Euler(0, 0, 0);
 
         if (direction.x < 0)
             transform.rotation = Quaternion.Euler(0, 180, 0);
-
-        if (direction.sqrMagnitude > 1f) direction.Normalize();
 
         transform.Find("Rotater").transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
 

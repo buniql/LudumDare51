@@ -38,6 +38,7 @@ public class Enemy7 : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 direction = _player.transform.position - transform.position;
+        if (direction.sqrMagnitude > 1f) direction.Normalize();
 
         if (direction.x > 0)
             transform.rotation = Quaternion.Euler(0, 0, 0);
