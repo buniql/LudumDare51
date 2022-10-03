@@ -75,8 +75,8 @@ public class Bullet : MonoBehaviour
 
         _rb.MovePosition(_rb.position + direction * _stat.Speed);
 
-        if(_currentTime > maxTime)
-            Destroy(gameObject);
+        // if(_currentTime > maxTime)
+        //     Destroy(gameObject);
 
         _currentTime += Time.deltaTime;
     }
