@@ -22,6 +22,8 @@ public class Bullet : MonoBehaviour
 
     private Vector2 _mousePos;
 
+    AudioSource _audio;
+
     void Start()
     {
         _collider = transform.Find("Sprite").GetComponent<CircleCollider2D>();
@@ -29,6 +31,7 @@ public class Bullet : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _entitySpawner = GameObject.Find("Entity Spawner").transform;
         _player = GameObject.Find("Player").transform;
+        _audio = GetComponent<AudioSource>();
 
         _mousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
         SetBulletSprite();
@@ -100,7 +103,7 @@ public class Bullet : MonoBehaviour
                 break;
         }
 
-        if(_currentTime > maxTime)
+        if (_currentTime > maxTime)
             Destroy(gameObject);
 
         _currentTime += Time.deltaTime;
