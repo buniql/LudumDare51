@@ -17,6 +17,10 @@ public class Bullet : MonoBehaviour
     private CircleCollider2D _collider;
     private SpriteRenderer _spriteRenderer;
     private Sprite _lastSprite;
+    private Transform _entitySpawner;
+    private Transform _player;
+
+    private Vector2 _mousePos;
 
     AudioSource _audio;
 
@@ -25,14 +29,17 @@ public class Bullet : MonoBehaviour
         _collider = transform.Find("Sprite").GetComponent<CircleCollider2D>();
         _spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
+        _entitySpawner = GameObject.Find("Entity Spawner").transform;
+        _player = GameObject.Find("Player").transform;
         _audio = GetComponent<AudioSource>();
 
+        _mousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
         SetBulletSprite();
     }
 
     void SetBulletSprite()
     {
-        switch (projectileType) //Set Sprite and resize accordingly
+        switch (projectileType)
         {
             case SpawnBullet.ProjectileType.Default:
                 _spriteRenderer.sprite = projectileSprites[0];
@@ -73,24 +80,51 @@ public class Bullet : MonoBehaviour
 
     void FixedUpdate() //alter flight parth of projectile
     {
-        if (direction.sqrMagnitude > 1f)
-            direction.Normalize();
+        switch (projectileType)
+        {
+            case SpawnBullet.ProjectileType.Blob:
+                transform.position = _mousePos;
+                break;
+            case SpawnBullet.ProjectileType.AutoAim:
+                Vector3 position = new Vector3(1000, 1000, 1000);
+                foreach (Transform child in _entitySpawner.GetComponentInChildren<Transform>())
+                {
+                    if (Vector3.Distance(_player.transform.position, child.position) < Vector3.Distance(_player.transform.position, position)) position = child.position;
+                }
 
-        _rb.MovePosition(_rb.position + direction * _stat.Speed);
+                Vector2 vectorToNearestEnemy = (position - transform.position).normalized;
+                _rb.MovePosition(_rb.position + vectorToNearestEnemy * _stat.Speed);
+                break;
+            default:
+                if (direction.sqrMagnitude > 1f)
+                    direction.Normalize();
 
-        // if(_currentTime > maxTime)
-        //     Destroy(gameObject);
+                _rb.MovePosition(_rb.position + direction * _stat.Speed);
+                break;
+        }
 
+        if (_currentTime > maxTime)
+            Destroy(gameObject);
 
         _currentTime += Time.deltaTime;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        Debug.Log(collider.gameObject.tag);
+        Debug.Log(toAttack);
         if (collider.gameObject.tag == toAttack)
         {
-            _audio.Play();
-            Destroy(gameObject);
+            switch (projectileType)
+            {
+                case SpawnBullet.ProjectileType.Bounce:
+                    direction = -direction;
+                    break;
+                default:
+                    Destroy(gameObject);
+                    break;
+            }
+
         }
     }
 

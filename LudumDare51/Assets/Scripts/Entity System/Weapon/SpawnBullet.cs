@@ -22,7 +22,7 @@ public class SpawnBullet : MonoBehaviour
         Bounce, //bounces off enemys
         AutoAim, //targets closes enemy
         Big, //giant projectile
-        Blob //stays at mouseposition
+        Blob, //stays at mouseposition
     }
 
     void Awake()

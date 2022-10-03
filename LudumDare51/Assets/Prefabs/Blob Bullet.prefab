@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1547320046753908751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8283023833310825662}
@@ -172,13 +172,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stat: {fileID: 11400000, guid: 1425d36e86d1df846bb11ad82e1d1350, type: 2}
   maxTime: 1
-  projectileType: 4
+  projectileType: 5
   projectileSprites:
-  - {fileID: 21300000, guid: 0993e549800df674daa8c040ecd715d6, type: 3}
-  - {fileID: 21300000, guid: 5a9f47bba69854c4082ead856ff296eb, type: 3}
-  - {fileID: 21300000, guid: 319bf78d87c01c0409ad0086936f40c6, type: 3}
-  direction: {x: 0, y: 0}
-  toAttack: 
+  - {fileID: 21300000, guid: d3ce29ce53238d94faefab232d4715a6, type: 3}
+  - {fileID: 21300000, guid: 5973f82178d41a044ad655b73526507e, type: 3}
+  - {fileID: 21300000, guid: cf9d3c2c90e60444ea04dae0bed677e1, type: 3}
+  - {fileID: 21300000, guid: b32ee93c7cf9905438202fa6675a2672, type: 3}
+  - {fileID: 21300000, guid: f34e6c6c2dc2e8843868b5c7df3b5835, type: 3}
+  - {fileID: 21300000, guid: 32d6ecf23413d4a4aa89d24dc452b796, type: 3}
+  direction: {x: 5.5217094, y: 0.68887585}
+  toAttack: Enemy
 --- !u!114 &5043177311818092312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,101 +194,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7417b79bd82f0384db37a3a74f480334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0
-  toAttack: 
---- !u!82 &4660776466805051965
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2622893531276828412}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0f7f9172aa91c434b88316ee6d6a9145, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _damage: 2
+  toAttack: Enemy
