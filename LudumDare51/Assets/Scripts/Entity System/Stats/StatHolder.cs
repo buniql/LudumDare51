@@ -8,6 +8,8 @@ using UnityEngine.UIElements;
 public class StatHolder : MonoBehaviour
 {
     [SerializeField] Stats _stat;
+    [SerializeField] AudioClip clip;
+
     public Stats Stat { get { return _stat; } }
 
     void Awake()

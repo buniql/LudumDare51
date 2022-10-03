@@ -13,7 +13,7 @@ public class Skills : ScriptableObject
 
     public override string ToString()
     {
-        string cache = $"Costs: {Costs}\n\n";
+        string cache = $"Costs: {Costs} HP\n\n";
 
         foreach (var value in Stat.GetType().GetProperties())
         {

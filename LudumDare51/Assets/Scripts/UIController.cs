@@ -10,20 +10,25 @@ public class UIController : MonoBehaviour
 {
     StatHolder playerStats;
     [SerializeField] TextMeshProUGUI hp;
+    [SerializeField] TextMeshProUGUI timedDamage;
+    [SerializeField] TextMeshProUGUI shopText;
 
     [Space(10)]
     [SerializeField] Image shopPanel;
     [SerializeField] TextMeshProUGUI[] shopSlots;
     [SerializeField] Button[] buttons;
 
+    string shopIsOpenText = "<color=green>Shop is open!</color>";
+
     void Start()
     {
         playerStats = GameObject.Find("Player").GetComponent<StatHolder>();
+        shopText.text = shopIsOpenText;
     }
 
     void Update()
     {
-        hp.SetText($"HP: {playerStats.Stat.Health}/{playerStats.Stat.MaxHealth}");
+        hp.SetText($"HP: <color=red>{playerStats.Stat.Health}/{playerStats.Stat.MaxHealth}</color>");
     }
 
     public void RestartGame()
@@ -67,6 +72,17 @@ public class UIController : MonoBehaviour
             else
                 Debug.Log("Eine Tragik");
         }
+    }
+
+    public void SetTimedDamage(int secondsLeft) =>
+        timedDamage.text = $"Next Damage in: {secondsLeft}";
+
+    public void ShopOpen(int secondsLeft)
+    {
+        if (secondsLeft == 0)
+            shopText.text = shopIsOpenText;
+        else
+            shopText.text = $"Shop opens in: {secondsLeft}";
     }
 
     public void CloseShop()
