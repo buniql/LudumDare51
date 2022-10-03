@@ -8,7 +8,8 @@ public class EnemyDeath : BaseDeath
 
     public override void Death()
     {
-        Instantiate(live, transform.position, Quaternion.identity);
+        var vec = transform.position;
+        Instantiate(live, new Vector3(vec.x, vec.y, 389), Quaternion.identity);
         base.Death();
     }
 }

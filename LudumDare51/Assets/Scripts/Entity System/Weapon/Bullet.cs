@@ -18,11 +18,14 @@ public class Bullet : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private Sprite _lastSprite;
 
+    AudioSource _audio;
+
     void Start()
     {
         _collider = transform.Find("Sprite").GetComponent<CircleCollider2D>();
         _spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
+        _audio = GetComponent<AudioSource>();
 
         SetBulletSprite();
     }
@@ -84,10 +87,11 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log(collider.gameObject.tag);
-        Debug.Log(toAttack);
-        if (collider.gameObject.tag == toAttack) //What happens when projectile hits
+        if (collider.gameObject.tag == toAttack)
+        {
+            _audio.Play();
             Destroy(gameObject);
+        }
     }
 
     public void ConfigureBullet(Vector2 direction, String tag)
