@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f9da47651acff488bc772d8e2224f6, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 2622893531276828412, guid: c7a92e6fc4c27ba4287310167119a01f, type: 3}
+  _weapon: {fileID: 2622893531276828412, guid: d346d932629f8404abaca204290c6c9e, type: 3}
   _maxHealth: 100
   _shootCooldown: 0.3
   _damage: 2
