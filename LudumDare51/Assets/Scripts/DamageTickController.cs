@@ -8,11 +8,13 @@ public class DamageTickController : MonoBehaviour
     [SerializeField] int damage;
 
     [SerializeField] UIController ui;
+    AudioSource _audio;
 
     StatHolder player;
 
     void Start()
     {
+        _audio = GetComponent<AudioSource>();
         player = GameObject.Find("Player").GetComponent<StatHolder>();
         StartCoroutine(Damage());
     }
@@ -27,6 +29,7 @@ public class DamageTickController : MonoBehaviour
                 yield return new WaitForSeconds(1);
             }
 
+            _audio.Play();
             player.Stat.GetDamage(damage);
         }
     }

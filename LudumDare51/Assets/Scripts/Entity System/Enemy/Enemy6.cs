@@ -17,6 +17,7 @@ public class Enemy6 : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Dash _dash;
     private Damage _damage;
+    AudioSource _audio;
 
     private float _attackCooldownCounter = -1;
     private float _dodgeCooldownCounter = -1;
@@ -28,6 +29,7 @@ public class Enemy6 : MonoBehaviour
         _holder = GetComponent<StatHolder>();
         _dash = GetComponent<Dash>();
         _damage = GetComponent<Damage>();
+        _audio = GetComponent<AudioSource>();
         _maxHealth = _holder.Stat.Health;
         _activated = false;
     }
@@ -49,7 +51,7 @@ public class Enemy6 : MonoBehaviour
         if ((_player.transform.position - transform.position).sqrMagnitude > activationDistance && !_activated)
             Idle();
         else
-            if(!_activated) _activated = true;
+            if (!_activated) _activated = true;
 
         if (_activated)
         {
@@ -61,22 +63,23 @@ public class Enemy6 : MonoBehaviour
 
     void Idle()
     {
-        
+
     }
 
     void Attack()
     {
         if (_attackCooldownCounter < 0)
         {
+            _audio.Play();
             _damage.SetDamage(_holder.Stat.Damage, tag);
             _attackCooldownCounter = _holder.Stat.ShootCooldown;
         }
-        if(_dodgeCooldownCounter < 0)
+        if (_dodgeCooldownCounter < 0)
         {
             _activeMovementspeed = _holder.Stat.DashSpeed;
             _dodgeCooldownCounter = _holder.Stat.DashCooldown;
         }
-        if(_dodgeCooldownCounter < _holder.Stat.DashCooldown - _holder.Stat.DashLength)
+        if (_dodgeCooldownCounter < _holder.Stat.DashCooldown - _holder.Stat.DashLength)
         {
             _activeMovementspeed = _holder.Stat.Speed;
         }

@@ -19,6 +19,7 @@ public class Enemy7 : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Dash _dash;
     private Damage _damage;
+    AudioSource _audio;
 
     private float _cooldownCounter = -1;
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class Enemy7 : MonoBehaviour
         _holder = GetComponent<StatHolder>();
         _dash = GetComponent<Dash>();
         _damage = GetComponent<Damage>();
+        _audio = GetComponent<AudioSource>();
         _circleCollider = GetComponent<CircleCollider2D>();
         _maxHealth = _holder.Stat.Health;
         _activated = false;
@@ -51,7 +53,7 @@ public class Enemy7 : MonoBehaviour
         if ((_player.transform.position - transform.position).sqrMagnitude > activationDistance && !_activated)
             Idle();
         else
-            if(!_activated) _activated = true;
+            if (!_activated) _activated = true;
 
         if (_activated)
         {
@@ -73,13 +75,14 @@ public class Enemy7 : MonoBehaviour
 
     void Idle()
     {
-        
+
     }
 
     void Attack()
     {
         if (_cooldownCounter < 0)
         {
+            _audio.Play();
             _damage.SetDamage(_holder.Stat.Damage, tag);
             _cooldownCounter = _holder.Stat.ShootCooldown;
         }

@@ -9,6 +9,13 @@ public class Damage : MonoBehaviour
 
     [HideInInspector] public String toAttack;
 
+    AudioSource _audio;
+
+    void Start()
+    {
+        _audio = GetComponent<AudioSource>();
+    }
+
     public void SetDamage(int damage, string tag)
     {
         _damage = damage;
@@ -25,6 +32,7 @@ public class Damage : MonoBehaviour
     {
         if (collider.gameObject.tag == toAttack)
         {
+            // _audio.Play();
             var holder = collider.gameObject.GetComponent<StatHolder>();
             holder.Stat.GetDamage(_damage);
             _damage = 0;
