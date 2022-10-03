@@ -67,7 +67,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stat: {fileID: 11400000, guid: d846511b21105884e8910493842ff1a1, type: 2}
-  clip: {fileID: 0}
 --- !u!114 &3488775869017401993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.2
-  turnSpeed: 1
+  turnSpeed: 2
   activationDistance: 50
   spawner:
   - {fileID: 4651004333132422537}

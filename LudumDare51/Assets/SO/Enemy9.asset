@@ -16,7 +16,7 @@ MonoBehaviour:
   _maxHealth: 25
   _shootCooldown: 2
   _damage: 10
-  _speed: 0.2
+  _speed: 0.3
   _dashSpeed: 0.7
   _dashLength: 0.2
   _dashCooldown: 2

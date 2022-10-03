@@ -18,5 +18,5 @@ MonoBehaviour:
   _damage: 0
   _speed: 0
   _dashSpeed: 0
-  _dashLength: 0.4
-  _dashCooldown: -0.4
+  _dashLength: 0.05
+  _dashCooldown: -0.2

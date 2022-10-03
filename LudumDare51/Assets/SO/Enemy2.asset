@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weapon: {fileID: 2622893531276828412, guid: 439df0e55d845de4f9b0b19fc441b057, type: 3}
   _maxHealth: 25
-  _shootCooldown: 0.7
+  _shootCooldown: 0.3
   _damage: 7
   _speed: 0.05
   _dashSpeed: 0.7

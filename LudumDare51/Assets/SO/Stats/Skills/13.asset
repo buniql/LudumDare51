@@ -17,6 +17,6 @@ MonoBehaviour:
   _shootCooldown: 0
   _damage: 0
   _speed: 0
-  _dashSpeed: 3
+  _dashSpeed: 0.5
   _dashLength: 0.3
   _dashCooldown: 0

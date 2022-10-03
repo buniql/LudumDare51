@@ -35,18 +35,17 @@ public class EntitySpawner : MonoBehaviour
 
         int index = 0;
         int sum = 0;
-        int value = Random.Range(0, 100);
         for(int i = 0; i < probEnemy.Length; i++)
         {
             sum += probEnemy[i];
-            if(value < sum)
-            {
-                index = i;
-                break;
-            }
+        }
+        int value = Random.Range(0, sum);
+        for (int i = 1; i < probEnemy.Length; i++)
+        {
+            if(value >= probEnemy[i - 1] && value < probEnemy[i]) index = i;
         }
 
-        GameObject enemy = GameObject.Instantiate(Enemys[Random.Range(0, Enemys.Length - 1)], randomPosition, Quaternion.identity);
+            GameObject enemy = GameObject.Instantiate(Enemys[Random.Range(0, Enemys.Length - 1)], randomPosition, Quaternion.identity);
         enemy.transform.parent = GameObject.Find("Entity Spawner").transform;
         CurrentEnemyAmount++;
     }

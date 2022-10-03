@@ -121,7 +121,13 @@ public class Bullet : MonoBehaviour
                     direction = -direction;
                     break;
                 default:
-                    _audio.Play();
+                    try
+                    {
+                        _audio.Play();
+                    } catch (NullReferenceException)
+                    {
+                        //GameJam Solution ;)
+                    }
                     Destroy(gameObject, 0.5f);
                     break;
             }
