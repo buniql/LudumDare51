@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93d71f9eda3b9f44bae7599c048d2b28, type: 3}
-  m_Name: 1
+  m_Name: 1 15
   m_EditorClassIdentifier: 
-  costs: 10
-  stat: {fileID: 11400000, guid: b6c0a840179a05842aa192135d1cc629, type: 2}
+  costs: 20
+  stat: {fileID: 11400000, guid: 8a2b32585e6edd645bdde9c51b12581d, type: 2}

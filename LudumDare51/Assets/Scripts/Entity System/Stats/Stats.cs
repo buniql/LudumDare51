@@ -72,6 +72,7 @@ public class Stats : ScriptableObject
         toReturn._dashLength += lhs._dashLength + rhs._dashLength;
         toReturn._dashCooldown += lhs._dashCooldown + rhs._dashCooldown;
         toReturn._shootCooldown += lhs._shootCooldown + rhs._shootCooldown;
+        Mathf.Clamp(toReturn._shootCooldown, .2f, 10f);
         toReturn.Health = lhs.Health;
 
         if (rhs.Weapon != null)
