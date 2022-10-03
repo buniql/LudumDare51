@@ -6,17 +6,63 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Stats _stat;
+    [SerializeField] SpawnBullet.ProjectileType projectileType;
+    [SerializeField] Sprite[] projectileSprites;
     [HideInInspector] public Vector2 direction;
     Rigidbody2D _rb;
     [HideInInspector] public String toAttack;
 
+    private CircleCollider2D _collider;
+    private SpriteRenderer _spriteRenderer;
+    private Sprite _lastSprite;
+
     void Start()
     {
+        projectileType = SpawnBullet.projectileType;
+        _collider = transform.Find("Sprite").GetComponent<CircleCollider2D>();
+        _spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         _rb = GetComponent<Rigidbody2D>();
-        Debug.Log("hier2");
+
+        switch (projectileType) //Set Sprite and resize accordingly
+        {
+            case SpawnBullet.ProjectileType.Default:
+                _spriteRenderer.sprite = projectileSprites[0];
+                ResizeCollider(0);
+                break;
+            case SpawnBullet.ProjectileType.Fire:
+                _spriteRenderer.sprite = projectileSprites[1];
+                ResizeCollider(1);
+                break;
+            case SpawnBullet.ProjectileType.Bounce:
+                _spriteRenderer.sprite = projectileSprites[2];
+                ResizeCollider(2);
+                break;
+            case SpawnBullet.ProjectileType.Blob:
+                _spriteRenderer.sprite = projectileSprites[3];
+                ResizeCollider(3);
+                break;
+            case SpawnBullet.ProjectileType.Big:
+                _spriteRenderer.sprite = projectileSprites[4];
+                ResizeCollider(4);
+                break;
+            case SpawnBullet.ProjectileType.AutoAim:
+                _spriteRenderer.sprite = projectileSprites[5];
+                ResizeCollider(5);
+                break;
+        }
     }
 
-    void FixedUpdate()
+    private void ResizeCollider(int projectileIndex)
+    {
+        if (_spriteRenderer.sprite != _lastSprite)
+        {
+            Vector3 spriteHalfSize = _spriteRenderer.sprite.bounds.extents;
+            _collider.radius = spriteHalfSize.x > spriteHalfSize.y ? spriteHalfSize.x : spriteHalfSize.y;
+            _lastSprite = _spriteRenderer.sprite;
+        }
+    }
+
+    void FixedUpdate() //alter flight parth of projectile
     {
         if (direction.sqrMagnitude > 1f)
             direction.Normalize();
@@ -28,12 +74,13 @@ public class Bullet : MonoBehaviour
     {
         Debug.Log(collider.gameObject.tag);
         Debug.Log(toAttack);
-        if (collider.gameObject.tag == toAttack)
+        if (collider.gameObject.tag == toAttack) //What happens when projectile hits
             Destroy(gameObject);
     }
 
-    public void ConfigureBullet(Vector2 direction, String tag)
+    public void ConfigureBullet(Vector2 direction, String tag, SpawnBullet.ProjectileType type)
     {
+        this.projectileType = type;
         this.direction = direction;
 
         if (tag == "Player")

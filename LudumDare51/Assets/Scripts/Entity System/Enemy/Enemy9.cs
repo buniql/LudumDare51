@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1 : MonoBehaviour
+public class Enemy9 : MonoBehaviour
 {
-    public float movementSpeed;
-    public float turnSpeed;
+    public int gunRounds;
+    public float gunSpray;
     public float activationDistance;
-    public GameObject[] spawner;
+    public GameObject spawner;
 
     private Transform _player;
 
@@ -59,6 +59,8 @@ public class Enemy1 : MonoBehaviour
     {
         if (_cooldownCounter < 0)
         {
+            Vector2[] shots = new Vector2[gunRounds];
+
             Debug.Log("Cooldown: " + _holder.Stat.ShootCooldown);
             _cooldownCounter = _holder.Stat.ShootCooldown;
             var weapon = _holder.Stat.Weapon;
@@ -66,12 +68,12 @@ public class Enemy1 : MonoBehaviour
             var damage = weapon.GetComponent<Damage>();
             damage.SetDamage(_holder.Stat.Damage, tag);
 
-            for(int i = 0; i < spawner.Length; i++)
+            for(int i = 0; i < gunRounds; i++)
             {
                 var bullet = weapon.GetComponent<Bullet>();
-                bullet.ConfigureBullet((spawner[i].transform.position - transform.position), tag, SpawnBullet.ProjectileType.Default);
+                bullet.ConfigureBullet(((spawner.transform.position - transform.position) + new Vector3(Random.Range(-gunSpray, gunSpray), Random.Range(-gunSpray, gunSpray), 0)), tag, SpawnBullet.ProjectileType.Default);
 
-                Instantiate(weapon, spawner[i].transform.position, Quaternion.identity);
+                Instantiate(weapon, spawner.transform.position, Quaternion.identity);
             }
         }
         _cooldownCounter -= Time.deltaTime;

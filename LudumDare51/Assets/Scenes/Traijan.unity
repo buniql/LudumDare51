@@ -1010,7 +1010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 831660684}
-  PlayerForceField: 7
+  PlayerForceField: 10
   MaxEnemyAmount: 20
   Enemys:
   - {fileID: 2622893531276828412, guid: 22c37bc77017e054aa1a3860e19cb943, type: 3}
@@ -1261,6 +1261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68e335d84b52064999435944e5d3fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &1652659304
 GameObject:
   m_ObjectHideFlags: 0
