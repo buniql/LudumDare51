@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Dash : MonoBehaviour
@@ -24,7 +22,7 @@ public class Dash : MonoBehaviour
 
             if (_dashCounter <= 0)
             {
-                _dashCoolCounter = _holder.Stat.dashCooldown;
+                _dashCoolCounter = _holder.Stat.DashCooldown;
                 IsDashing = false;
             }
         }
@@ -40,9 +38,9 @@ public class Dash : MonoBehaviour
         if (_dashCoolCounter <= 0 && _dashCounter <= 0)
         {
             IsDashing = true;
-            _dashCounter = _holder.Stat.dashLength;
+            _dashCounter = _holder.Stat.DashLength;
 
-            return _holder.Stat.dashSpeed;
+            return _holder.Stat.DashSpeed;
         }
 
         return 0;
