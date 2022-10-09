@@ -1,6 +1,6 @@
 # About
 
-[Ludum Dare Entry](https://ldjam.com/events/ludum-dare/51/10-seconds-to-death)
+[Ludum Dare Entry](https://ldjam.com/events/ludum-dare/51/10-seconds-to-death)  
 [Itch.io](https://traijan.itch.io/10-seconds-to-death)
 
 This is a project for the [Ludum Dare Game Jam](https://ldjam.com/).
